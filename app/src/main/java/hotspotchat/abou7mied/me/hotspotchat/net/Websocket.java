@@ -18,22 +18,15 @@ import hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer;
 
 public class Websocket {
 
-    public static final String LOG_TAG = "wsServer";
-    public static final String IP_ADDRESS = "192.168.43.1";
-    public static final int PORT = 8887;
-    public static WebSocketServer server;
     public static WsClient client;
+    public static WsServer wsServer;
 
     public static void startServer() {
+        if (wsServer != null)
+            return;
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                server = new WsServer(new InetSocketAddress(PORT));
-                server.run();
-            }
-        }).start();
-
+        wsServer = new WsServer();
+        wsServer.run();
     }
 
 
@@ -41,43 +34,43 @@ public class Websocket {
         startClient(false);
     }
 
-    public static synchronized void startClient(boolean createNew) {
+    public static WsClient startClient(boolean createNew) {
 
-        if (!createNew && client != null)
-            return;
+        if (client != null && !createNew) {
+            if(client.isOpen())
+                client.sendMyDetails();
+            return client;
+        }
 
-        new Thread(new Runnable() {
+        URI serverURI = null;
+        try {
+            serverURI = new URI("ws://" + WsServer.IP_ADDRESS + ":" + WsServer.PORT);
+        } catch (URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        client = new WsClient(serverURI);
+        client.setConnectionTimeoutListener(new WsClient.ConnectionTimeout() {
             @Override
-            public void run() {
-
-                URI serverURI = null;
-                try {
-                    serverURI = new URI("ws://" + IP_ADDRESS + ":" + PORT);
-                } catch (URISyntaxException e) {
-                    e.printStackTrace();
-                }
-
-                Log.i("Start client", serverURI.toString());
-                client = new WsClient(serverURI);
-                client.setConnectionTimeoutListener(new WsClient.ConnectionTimeout() {
-                    @Override
-                    public void onTimeout() {
-                        startClient(true);
-                    }
-                });
-                client.connect();
+            public void onTimeout() {
+                startClient(true);
             }
-        }).start();
+        });
+        client.connect();
+
+
+
+        return client;
+
 
     }
 
 
     public static void stopServer() {
         Log.i("websocket", "stop server");
-
-        if (server != null)
+        if (wsServer != null)
             try {
-                server.stop();
+                wsServer.stop();
             } catch (IOException e) {
                 e.printStackTrace();
             } catch (InterruptedException e) {
