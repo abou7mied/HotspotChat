@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,11 +29,19 @@ import hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient;
 public class OnlineFragment extends Fragment {
 
 
-    public static OnlineFragment newInstance() {
-        Bundle args = new Bundle();
-        OnlineFragment fragment = new OnlineFragment();
-        fragment.setArguments(args);
-        return fragment;
+    static OnlineFragment instance;
+    public static RecyclerView recyclerView;
+    SimpleItemRecyclerViewAdapter adapter;
+
+
+    public static OnlineFragment getInstance() {
+        if (instance == null) {
+            Bundle args = new Bundle();
+            OnlineFragment fragment = new OnlineFragment();
+            fragment.setArguments(args);
+            instance = fragment;
+        }
+        return instance;
     }
 
     @Override
@@ -44,14 +53,11 @@ public class OnlineFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-
         OnlineFragmentBinding onlineFragmentBinding = DataBindingUtil.inflate(inflater, R.layout.online_fragment, container, false);
-
-
-        onlineFragmentBinding.itemList.setLayoutManager(new LinearLayoutManager(getActivity()));
-        onlineFragmentBinding.itemList.setAdapter(new SimpleItemRecyclerViewAdapter(WsClient.profiles));
-
-
+        recyclerView = onlineFragmentBinding.itemList;
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        adapter = new SimpleItemRecyclerViewAdapter(WsClient.online);
+        recyclerView.setAdapter(adapter);
         return onlineFragmentBinding.getRoot();
     }
 
@@ -59,9 +65,9 @@ public class OnlineFragment extends Fragment {
     public class SimpleItemRecyclerViewAdapter
             extends RecyclerView.Adapter<SimpleItemRecyclerViewAdapter.ViewHolder> {
 
-        private final ObservableArrayList<Profile> mValues;
+        private final ObservableArrayList<String> mValues;
 
-        public SimpleItemRecyclerViewAdapter(ObservableArrayList<Profile> items) {
+        public SimpleItemRecyclerViewAdapter(ObservableArrayList<String> items) {
             mValues = items;
         }
 
@@ -74,31 +80,13 @@ public class OnlineFragment extends Fragment {
         @Override
         public void onBindViewHolder(final ViewHolder holder, int position) {
 
-            final Profile item = mValues.get(position);
+            String id = mValues.get(position);
+            Profile item = Profile.getProfile(id);
+
             holder.getBinding().setVariable(BR.profile, item);
             holder.getBinding().executePendingBindings();
 
 
-//
-//            ProfileItemContentBinding viewDataBinding = holder.getBinding();
-////            viewDataBinding.setVariable(BR.profile, mValues.get(position));
-//            viewDataBinding.setVariable(itemBinder.getBindingVariable(item), item);
-//
-//            viewDataBinding.executePendingBindings();
-
-//            holder.profile = mValues.get(position);
-//            holder.name.setText(mValues.get(position).getName());
-//            holder.mContentView.setText(mValues.get(position).content);
-//            holder.mView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    Context context = v.getContext();
-//                    Intent intent = new Intent(context, ItemDetailActivity.class);
-//                    intent.putExtra(ItemDetailFragment.ARG_ITEM_ID, holder.profile.id);
-//
-//                    context.startActivity(intent);
-//                }
-//            });
         }
 
 
@@ -129,5 +117,17 @@ public class OnlineFragment extends Fragment {
         }
     }
 
+    public static RecyclerView getRecyclerView() {
+        return recyclerView;
+    }
 
+    public void notifyList() {
+        Log.e("getActivity() != null", (getActivity() != null) + "-");
+        getActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                adapter.notifyDataSetChanged();
+            }
+        });
+    }
 }

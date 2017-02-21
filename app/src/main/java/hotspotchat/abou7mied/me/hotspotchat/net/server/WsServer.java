@@ -18,6 +18,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import hotspotchat.abou7mied.me.hotspotchat.core.Profile;
+import hotspotchat.abou7mied.me.hotspotchat.messaging.Message;
 import hotspotchat.abou7mied.me.hotspotchat.net.WsMessage;
 
 public class WsServer extends WebSocketServer {
@@ -33,7 +34,12 @@ public class WsServer extends WebSocketServer {
     public static int PING_TIMEOUT = 10000;
     private Timer heartBeatsTimer = new Timer(true);
     private HashMap<WebSocket, WsConnection> connections = new HashMap<>();
-    private HashMap<WebSocket, Profile> profiles = new HashMap<>();
+
+    private ArrayList<String> online = new ArrayList<>();
+    private HashMap<String, Profile> profiles = new HashMap<>();
+
+    private HashMap<String, WsConnection> converListeners = new HashMap<>();
+
 
 
     public WsServer() {
@@ -45,6 +51,7 @@ public class WsServer extends WebSocketServer {
         System.out.println("new connection to " + conn.getRemoteSocketAddress());
         WsConnection wsConnection = new WsConnection(this, conn);
         connections.put(conn, wsConnection);
+
     }
 
     @Override
@@ -74,8 +81,9 @@ public class WsServer extends WebSocketServer {
 
     @Override
     public synchronized void onClose(WebSocket conn, int code, String reason, boolean remote) {
+        WsConnection wsConnection = connections.get(conn);
+        online.remove(wsConnection.getProfile().getId());
         connections.remove(conn);
-        profiles.remove(conn);
         pushProfilesToConnections();
     }
 
@@ -107,43 +115,51 @@ public class WsServer extends WebSocketServer {
         return connections;
     }
 
-    public void addProfile(WsConnection webSocket, Profile profile) {
-        profiles.put(webSocket.getConnection(), profile);
+    public void addOnlineUser(Profile profile) {
+        if (online.indexOf(profile.getId()) == -1)
+            online.add(profile.getId());
+        profiles.put(profile.getId(), profile);
         pushProfilesToConnections();
+        pushOnlineIdsToConnections();
+
     }
 
-    public HashMap<WebSocket, Profile> getProfiles() {
+    public HashMap<String, Profile> getProfiles() {
         return profiles;
     }
 
     private void pushProfilesToConnections() {
-
-        WsMessage wsMessage = new WsMessage();
-        wsMessage.setAction(WsMessage.ACTION_BROADCAST_PROFILES);
-        JSONObject data = new JSONObject();
-        try {
-            ArrayList<Profile> p = new ArrayList<>();
-            for (Profile profile : getProfiles().values()) {
-                p.add(profile);
-            }
-            data.put(WsMessage.DATA_PROFILES_KEY, new Gson().toJson(p));
-        } catch (JSONException e) {
-            e.printStackTrace();
+        WsMessage wsMessage = new WsMessage(WsMessage.ACTION_PROFILES_DETAILS);
+        ArrayList<Profile> p = new ArrayList<>();
+        for (Profile profile : getProfiles().values()) {
+            p.add(profile);
         }
-
-        wsMessage.setData(data);
+        wsMessage.putData(WsMessage.DATA_PROFILES_KEY, new Gson().toJson(p));
         broadcastMessage(wsMessage);
-
     }
 
-    private void broadcastMessage(WsMessage wsMessage) {
+    private void pushOnlineIdsToConnections() {
+        WsMessage wsMessage = new WsMessage(WsMessage.ACTION_ONLINE_USERS);
+        wsMessage.putData(WsMessage.DATA_ONLINE_IDS_KEY, new Gson().toJson(online));
+        broadcastMessage(wsMessage);
+    }
+
+
+
+
+    public void broadcastMessage(WsMessage wsMessage) {
         Iterator it = getConnections().entrySet().iterator();
+        String json = new Gson().toJson(wsMessage);
         while (it.hasNext()) {
             Map.Entry pair = (Map.Entry) it.next();
             WsConnection wsConnection = (WsConnection) pair.getValue();
-            wsConnection.getConnection().send(new Gson().toJson(wsMessage));
+            wsConnection.getConnection().send(json);
         }
 
     }
+
+
+
+
 
 }

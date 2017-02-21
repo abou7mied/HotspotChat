@@ -13,6 +13,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
     private String tabTitles[] = new String[]{"Online", "Messages", "Profile"};
     final int PAGE_COUNT = tabTitles.length;
     private Context context;
+    private static int currentPosition;
 
     public SampleFragmentPagerAdapter(FragmentManager fm, Context context) {
         super(fm);
@@ -26,9 +27,22 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 2)
-            return MyProfileFragment.newInstance();
-        return OnlineFragment.newInstance();
+        currentPosition = position;
+        Fragment fragment = null;
+        switch (position) {
+            case 0:
+                fragment = OnlineFragment.getInstance();
+                break;
+            case 1:
+                fragment = ChatsFragment.getInstance();
+                break;
+            case 2:
+                fragment = MyProfileFragment.getInstance();
+                break;
+        }
+
+
+        return fragment;
     }
 
     @Override
@@ -36,4 +50,7 @@ public class SampleFragmentPagerAdapter extends FragmentPagerAdapter {
         return tabTitles[position];
     }
 
+    public static int getCurrentPosition() {
+        return currentPosition;
+    }
 }

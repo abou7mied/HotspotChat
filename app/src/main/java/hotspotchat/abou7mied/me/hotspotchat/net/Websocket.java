@@ -2,10 +2,7 @@ package hotspotchat.abou7mied.me.hotspotchat.net;
 
 import android.util.Log;
 
-import org.java_websocket.server.WebSocketServer;
-
 import java.io.IOException;
-import java.net.InetSocketAddress;
 import java.net.URI;
 import java.net.URISyntaxException;
 
@@ -20,6 +17,18 @@ public class Websocket {
 
     public static WsClient client;
     public static WsServer wsServer;
+    public static WsClient.ConnectionEvents connectionEvents = new WsClient.ConnectionEvents() {
+        @Override
+        public void onConnect() {
+            Log.i("websocket", "onConnect");
+
+        }
+
+        @Override
+        public void onTimeout() {
+            startClient(true);
+        }
+    };
 
     public static void startServer() {
         if (wsServer != null)
@@ -37,7 +46,7 @@ public class Websocket {
     public static WsClient startClient(boolean createNew) {
 
         if (client != null && !createNew) {
-            if(client.isOpen())
+            if (client.isOpen())
                 client.sendMyDetails();
             return client;
         }
@@ -49,22 +58,15 @@ public class Websocket {
             e.printStackTrace();
         }
 
-        client = new WsClient(serverURI);
-        client.setConnectionTimeoutListener(new WsClient.ConnectionTimeout() {
-            @Override
-            public void onTimeout() {
-                startClient(true);
-            }
-        });
+        client = new WsClient(serverURI, connectionEvents);
         client.connect();
-
-
-
         return client;
-
 
     }
 
+    public static WsClient getClient() {
+        return client;
+    }
 
     public static void stopServer() {
         Log.i("websocket", "stop server");

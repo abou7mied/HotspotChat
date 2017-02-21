@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/avatarDialog"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#B2000000"
+        android:clickable="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:shadowColor="#000"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="1"
+            android:text="Select your avatar"
+            android:textColor="#fff"
+            android:textSize="28sp" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/avatars"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/closeAvatars"
+            android:layout_below="@+id/text"
+            android:clickable="true"
+            android:padding="15dp"
+            tools:context="hotspotchat.abou7mied.me.hotspotchat.activities.MainActivity"
+            tools:listitem="@layout/avatar_item" />
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/closeAvatars"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_margin="@dimen/fab_margin"
+            app:srcCompat="@android:drawable/ic_menu_close_clear_cancel" />
+    </RelativeLayout>
+
+
+</LinearLayout>

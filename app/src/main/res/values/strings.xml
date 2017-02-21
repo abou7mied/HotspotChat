@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Hotspot Chat</string>
     <string name="title_item_detail">Item Detail</string>
-    <string name="profile_activity">Your profile</string>
+    <string name="profile_activity">Setup Your profile</string>
 
     <string name="dummy_section_text">Section %1d is just a dummy section.</string>
 

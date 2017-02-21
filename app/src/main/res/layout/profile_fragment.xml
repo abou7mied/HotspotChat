@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="profile"
+            type="hotspotchat.abou7mied.me.hotspotchat.core.Profile" />
+
+        <variable
+            name="netWorkManager"
+            type="hotspotchat.abou7mied.me.hotspotchat.net.NetWorkManager" />
+
+        <variable
+            name="preferences"
+            type="hotspotchat.abou7mied.me.hotspotchat.core.Preferences" />
+
+        <import type="android.view.View" />
+
+
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.v4.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clipToPadding="false"
+            android:paddingBottom="20dp">
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="250dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/nameLayout"
+                        android:layout_alignParentTop="true"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/lights_night_blured" />
+
+                    <ImageView
+                        android:id="@+id/avatar"
+                        android:layout_width="150dp"
+                        android:layout_height="150dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginTop="30dp"
+                        android:src="@{profile.avatarRes}" />
+
+                    <LinearLayout
+                        android:id="@+id/nameLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:orientation="vertical"
+                        android:padding="20dp">
+
+                        <android.support.design.widget.TextInputLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <EditText
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:hint="Your name"
+                                android:inputType="textCapWords|textPersonName"
+                                android:shadowColor="#000"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="1"
+                                android:text="@={profile.name}"
+                                android:textColor="#fff"
+                                android:textSize="20sp" />
+                        </android.support.design.widget.TextInputLayout>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+                <Switch
+                    android:id="@+id/notificationSwitch"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:checked="@{preferences.notificationEnabled?true:false}"
+                    android:text="Enable notifications" />
+
+
+                <LinearLayout
+                    android:id="@+id/networkButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="15dp"
+                        android:text="@{netWorkManager.currentNetworkName}" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="50dp"
+                        android:layout_marginRight="50dp"
+                        android:orientation="vertical">
+
+                        <Button
+                            android:id="@+id/startNetwork"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Start Network"
+                            android:visibility="@{netWorkManager.hotspotEnabled?View.GONE:View.VISIBLE}" />
+
+                        <Button
+                            android:id="@+id/stopNetwork"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="15dp"
+                            android:text="Stop Network"
+                            android:visibility="@{!netWorkManager.hotspotEnabled?View.GONE:View.VISIBLE}" />
+
+                        <Button
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Connect to Network" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/next"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="50dp"
+                    android:layout_marginRight="50dp"
+                    android:text="Continue"
+                    android:visibility="gone" />
+
+            </LinearLayout>
+
+        </android.support.v4.widget.NestedScrollView>
+
+
+    </RelativeLayout>
+</layout>

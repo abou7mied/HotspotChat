@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="hotspotchat.abou7mied.me.hotspotchat.ItemDetailActivity"
+    tools:context=".activities.MyProfileActivity"
     tools:ignore="MergeRootFrame">
 
     <android.support.design.widget.AppBarLayout
@@ -22,11 +22,28 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <android.support.v4.widget.NestedScrollView
-        android:id="@+id/item_detail_container"
+    <!--<android.support.v4.widget.NestedScrollView-->
+    <!--android:id="@+id/item_detail_container"-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--app:layout_behavior="@string/appbar_scrolling_view_behavior">-->
+    <!--</android.support.v4.widget.NestedScrollView>-->
+
+
+    <fragment
+        android:id="@+id/profileFragment"
+        class="hotspotchat.abou7mied.me.hotspotchat.fragments.MyProfileFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:layout="@layout/avatars_fragment" />
+
+    <fragment
+        android:id="@+id/avatarsFragment"
+        class="hotspotchat.abou7mied.me.hotspotchat.fragments.AvatarsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:layout="@layout/avatars_fragment" />
 
 
 </android.support.design.widget.CoordinatorLayout>

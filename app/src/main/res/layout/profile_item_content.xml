@@ -21,7 +21,7 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/avatar_1" />
+            android:src="@{profile.avatarRes}" />
 
         <TextView
             android:id="@+id/name"
@@ -32,10 +32,12 @@
             android:layout_marginLeft="15dp"
             android:layout_toRightOf="@+id/avatar"
             android:gravity="center_vertical"
+            android:lines="1"
+            android:paddingTop="2dp"
             android:text="@{profile.name}"
             android:textAlignment="center"
             android:textAppearance="?attr/textAppearanceListItem"
-            android:textSize="24sp" />
+            android:textSize="23sp" />
 
 
     </RelativeLayout>

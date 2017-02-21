@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+        <variable
+            name="message"
+            type="hotspotchat.abou7mied.me.hotspotchat.messaging.Message" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="10dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{message.profile.name}" />
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+
+            <RelativeLayout
+                android:id="@+id/textContainer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="-25dp"
+                android:layout_toRightOf="@+id/avatar">
+
+                <TextView
+                    android:id="@+id/text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="80dp"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_message_bg"
+                    android:gravity="center_vertical"
+                    android:includeFontPadding="false"
+                    android:paddingBottom="9dp"
+                    android:paddingLeft="35dp"
+                    android:paddingRight="15dp"
+                    android:paddingTop="9dp"
+                    android:text="@{message.text}"
+                    android:textAlignment="center"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignBottom="@+id/text"
+                    android:layout_marginLeft="-80dp"
+                    android:layout_toRightOf="@+id/text"
+                    android:lines="1"
+                    android:padding="5dp"
+                    android:text="@{message.formatedTime}"
+                    android:textColor="#818181"
+                    android:textSize="11sp" />
+            </RelativeLayout>
+            <!--android:text="@{message.text}"-->
+
+            <ImageView
+                android:id="@+id/avatar"
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignBottom="@id/textContainer"
+                android:background="@drawable/avatar_bg"
+                android:scaleType="centerCrop"
+                android:src="@{message.profile.avatarRes}" />
+        </RelativeLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>hotspotchat.abou7mied.me.hotspotchat</OriginalElement>
+  <nodes>
+    <node x="1702.360333333333" y="1975.0">hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer</node>
+    <node x="1906.87" y="908.0">hotspotchat.abou7mied.me.hotspotchat.core.Profile</node>
+    <node x="3039.87" y="1604.0">hotspotchat.abou7mied.me.hotspotchat.activities.MainActivity</node>
+    <node x="3045.87" y="1040.0">hotspotchat.abou7mied.me.hotspotchat.fragments.SampleFragmentPagerAdapter</node>
+    <node x="394.0" y="2843.0">hotspotchat.abou7mied.me.hotspotchat.fragments.OnlineFragment</node>
+    <node x="1278.87" y="1519.5">hotspotchat.abou7mied.me.hotspotchat.messaging.Conversation</node>
+    <node x="2521.87" y="956.5">hotspotchat.abou7mied.me.hotspotchat.core.App</node>
+    <node x="3472.12" y="1640.5">hotspotchat.abou7mied.me.hotspotchat.activities.MyProfileActivity</node>
+    <node x="2931.9999999999995" y="300.5">hotspotchat.abou7mied.me.hotspotchat.core.NetService</node>
+    <node x="3301.9999999999995" y="156.0">hotspotchat.abou7mied.me.hotspotchat.database.DBController</node>
+    <node x="0.0" y="1508.0">hotspotchat.abou7mied.me.hotspotchat.fragments.ChatsFragment</node>
+    <node x="1757.8103333333333" y="1519.5">hotspotchat.abou7mied.me.hotspotchat.net.server.WsConnection</node>
+    <node x="803.8333333333333" y="2573.0">hotspotchat.abou7mied.me.hotspotchat.net.Websocket</node>
+    <node x="108.0" y="2843.0">hotspotchat.abou7mied.me.hotspotchat.net.NetWorkManager.Callback</node>
+    <node x="542.0" y="1676.5">hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient.ConnectionEvents</node>
+    <node x="1150.0" y="2843.0">hotspotchat.abou7mied.me.hotspotchat.net.WifiBroadcastReceiver</node>
+    <node x="808.0" y="2843.0">hotspotchat.abou7mied.me.hotspotchat.fragments.AvatarsFragment</node>
+    <node x="931.2753333333334" y="920.0">hotspotchat.abou7mied.me.hotspotchat.net.WsMessage</node>
+    <node x="2030.9999999999995" y="0.0">hotspotchat.abou7mied.me.hotspotchat.core.Preferences</node>
+    <node x="622.3333333333333" y="1999.0">hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient</node>
+    <node x="118.94200000000001" y="872.0">hotspotchat.abou7mied.me.hotspotchat.messaging.Message</node>
+    <node x="0.0" y="2949.0">hotspotchat.abou7mied.me.hotspotchat.fragments.MyProfileFragment</node>
+    <node x="3395.87" y="1137.0">hotspotchat.abou7mied.me.hotspotchat.AvatarsDialogInterface</node>
+    <node x="1585.9999999999995" y="252.5">hotspotchat.abou7mied.me.hotspotchat.net.NetWorkManager</node>
+    <node x="2454.936333333333" y="1603.5">hotspotchat.abou7mied.me.hotspotchat.core.MyProfile</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.server.WsConnection" target="hotspotchat.abou7mied.me.hotspotchat.core.Profile">
+      <point x="116.5" y="-197.0" />
+      <point x="2107.3103333333333" y="1488.0" />
+      <point x="2085.37" y="1488.0" />
+      <point x="-119.0" y="257.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient" target="hotspotchat.abou7mied.me.hotspotchat.net.WsMessage">
+      <point x="165.0" y="-245.0" />
+      <point x="1117.3333333333333" y="1488.0" />
+      <point x="1189.2753333333335" y="1488.0" />
+      <point x="-86.0" y="245.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.messaging.Conversation" target="hotspotchat.abou7mied.me.hotspotchat.core.Profile">
+      <point x="107.25" y="-197.0" />
+      <point x="1600.62" y="1488.0" />
+      <point x="1966.37" y="1488.0" />
+      <point x="-238.0" y="257.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.App" target="hotspotchat.abou7mied.me.hotspotchat.core.MyProfile">
+      <point x="-63.0" y="208.5" />
+      <point x="2710.87" y="1488.0" />
+      <point x="2680.336333333333" y="1488.0" />
+      <point x="64.40000000000009" y="-113.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.activities.MyProfileActivity" target="hotspotchat.abou7mied.me.hotspotchat.AvatarsDialogInterface">
+      <point x="0.0" y="-76.0" />
+      <point x="73.75" y="28.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.fragments.ChatsFragment" target="hotspotchat.abou7mied.me.hotspotchat.net.WsMessage">
+      <point x="174.0" y="-208.5" />
+      <point x="435.0" y="1488.0" />
+      <point x="1017.2753333333334" y="1488.0" />
+      <point x="-258.0" y="245.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.App" target="hotspotchat.abou7mied.me.hotspotchat.net.NetWorkManager">
+      <point x="-224.0" y="-208.5" />
+      <point x="2549.87" y="852.0" />
+      <point x="1692.2499999999995" y="852.0" />
+      <point x="-106.25" y="148.5" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.server.WsConnection" target="hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer">
+      <point x="155.33333333333348" y="197.0" />
+      <point x="2146.143666666667" y="1950.0" />
+      <point x="2112.560333333333" y="1950.0" />
+      <point x="117.19999999999982" y="-269.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient" target="hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient.ConnectionEvents">
+      <point x="-165.0" y="-245.0" />
+      <point x="787.3333333333333" y="1950.0" />
+      <point x="702.8333333333333" y="1950.0" />
+      <point x="64.33333333333326" y="40.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.App" target="hotspotchat.abou7mied.me.hotspotchat.database.DBController">
+      <point x="168.0" y="-208.5" />
+      <point x="2941.87" y="842.0" />
+      <point x="3434.7499999999995" y="842.0" />
+      <point x="-132.75" y="245.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.Preferences" target="hotspotchat.abou7mied.me.hotspotchat.core.App">
+      <point x="293.66666666666697" y="401.0" />
+      <point x="2765.1666666666665" y="852.0" />
+      <point x="2773.87" y="852.0" />
+      <point x="0.0" y="-208.5" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.Websocket" target="hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient.ConnectionEvents">
+      <point x="-74.25" y="-112.5" />
+      <point x="878.0833333333333" y="2543.0" />
+      <point x="611.8333333333333" y="2543.0" />
+      <point x="611.8333333333333" y="1950.0" />
+      <point x="638.5" y="1950.0" />
+      <point x="0.0" y="40.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer" target="hotspotchat.abou7mied.me.hotspotchat.net.WsMessage">
+      <point x="-234.4000000000001" y="-269.0" />
+      <point x="1760.960333333333" y="1950.0" />
+      <point x="1229.3513333333333" y="1950.0" />
+      <point x="1229.3513333333333" y="1488.0" />
+      <point x="1361.2753333333335" y="1488.0" />
+      <point x="86.0" y="245.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.Websocket" target="hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer">
+      <point x="123.75" y="-112.5" />
+      <point x="1076.0833333333333" y="2553.0" />
+      <point x="2141.860333333333" y="2553.0" />
+      <point x="146.5" y="269.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.fragments.ChatsFragment" target="hotspotchat.abou7mied.me.hotspotchat.messaging.Message">
+      <point x="0.0" y="-208.5" />
+      <point x="261.0" y="1488.0" />
+      <point x="413.442" y="1488.0" />
+      <point x="0.0" y="293.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.activities.MainActivity" target="hotspotchat.abou7mied.me.hotspotchat.core.App">
+      <point x="-128.25" y="-112.5" />
+      <point x="3082.62" y="1488.0" />
+      <point x="2962.87" y="1488.0" />
+      <point x="189.0" y="208.5" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.activities.MainActivity" target="hotspotchat.abou7mied.me.hotspotchat.fragments.SampleFragmentPagerAdapter">
+      <point x="42.75" y="-112.5" />
+      <point x="3253.62" y="1488.0" />
+      <point x="3293.37" y="1488.0" />
+      <point x="82.5" y="125.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.activities.MainActivity" target="hotspotchat.abou7mied.me.hotspotchat.AvatarsDialogInterface">
+      <point x="128.25" y="-112.5" />
+      <point x="3339.12" y="1488.0" />
+      <point x="3469.62" y="1488.0" />
+      <point x="-73.75" y="28.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.NetService" target="hotspotchat.abou7mied.me.hotspotchat.core.App">
+      <point x="87.5" y="100.5" />
+      <point x="3194.4999999999995" y="832.0" />
+      <point x="2885.87" y="832.0" />
+      <point x="112.0" y="-208.5" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.server.WsConnection" target="hotspotchat.abou7mied.me.hotspotchat.net.WsMessage">
+      <point x="-116.5" y="-197.0" />
+      <point x="1874.3103333333333" y="1478.0" />
+      <point x="1533.2753333333335" y="1478.0" />
+      <point x="258.0" y="245.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.messaging.Conversation" target="hotspotchat.abou7mied.me.hotspotchat.messaging.Message">
+      <point x="-107.25" y="-197.0" />
+      <point x="1386.12" y="1478.0" />
+      <point x="609.7753333333335" y="1478.0" />
+      <point x="196.33333333333337" y="293.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.App" target="hotspotchat.abou7mied.me.hotspotchat.core.NetService">
+      <point x="56.0" y="-208.5" />
+      <point x="2829.87" y="822.0" />
+      <point x="3019.4999999999995" y="822.0" />
+      <point x="-87.5" y="100.5" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer" target="hotspotchat.abou7mied.me.hotspotchat.core.Profile">
+      <point x="234.4000000000001" y="-269.0" />
+      <point x="2229.760333333333" y="1950.0" />
+      <point x="2256.0603333333333" y="1950.0" />
+      <point x="2256.0603333333333" y="1488.0" />
+      <point x="2204.37" y="1488.0" />
+      <point x="0.0" y="257.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.Websocket" target="hotspotchat.abou7mied.me.hotspotchat.net.client.WsClient">
+      <point x="24.75" y="-112.5" />
+      <point x="977.0833333333333" y="2533.0" />
+      <point x="1117.3333333333333" y="2533.0" />
+      <point x="165.0" y="245.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.fragments.MyProfileFragment" target="hotspotchat.abou7mied.me.hotspotchat.net.NetWorkManager.Callback">
+      <point x="0.0" y="-88.5" />
+      <point x="0.0" y="28.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.MyProfile" target="hotspotchat.abou7mied.me.hotspotchat.core.Profile">
+      <point x="-64.40000000000009" y="-113.0" />
+      <point x="2551.536333333333" y="1478.0" />
+      <point x="2442.37" y="1478.0" />
+      <point x="238.0" y="257.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.net.server.WsServer" target="hotspotchat.abou7mied.me.hotspotchat.net.server.WsConnection">
+      <point x="-117.20000000000005" y="-269.0" />
+      <point x="1878.1603333333333" y="1950.0" />
+      <point x="1835.4769999999999" y="1950.0" />
+      <point x="-155.33333333333326" y="197.0" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.MyProfile" target="hotspotchat.abou7mied.me.hotspotchat.core.App">
+      <point x="0.0" y="-113.0" />
+      <point x="2615.936333333333" y="1488.0" />
+      <point x="2584.87" y="1488.0" />
+      <point x="-189.0" y="208.5" />
+    </edge>
+    <edge source="hotspotchat.abou7mied.me.hotspotchat.core.App" target="hotspotchat.abou7mied.me.hotspotchat.core.Preferences">
+      <point x="-56.0" y="-208.5" />
+      <point x="2717.87" y="822.0" />
+      <point x="2471.4999999999995" y="822.0" />
+      <point x="0.0" y="401.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic Group" zoom="0.1" x="2508.0" y="2338.0" />
+  <SelectedNodes>
+    <node>hotspotchat.abou7mied.me.hotspotchat.messaging.Message</node>
+  </SelectedNodes>
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Methods</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+

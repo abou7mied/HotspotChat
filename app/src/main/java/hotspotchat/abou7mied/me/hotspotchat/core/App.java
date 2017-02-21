@@ -3,24 +3,18 @@ package hotspotchat.abou7mied.me.hotspotchat.core;
 import android.app.Application;
 import android.app.Service;
 import android.content.ComponentName;
-import android.content.Context;
 import android.content.Intent;
 import android.content.ServiceConnection;
-import android.content.SharedPreferences;
-import android.content.res.Configuration;
-import android.content.res.Resources;
 import android.os.IBinder;
-import android.util.DisplayMetrics;
 import android.util.Log;
 
 import com.facebook.stetho.Stetho;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
-import java.util.Hashtable;
-import java.util.Locale;
-import java.util.Vector;
-
-import hotspotchat.abou7mied.me.hotspotchat.R;
-import hotspotchat.abou7mied.me.hotspotchat.net.Websocket;
+import hotspotchat.abou7mied.me.hotspotchat.database.DBController;
+import hotspotchat.abou7mied.me.hotspotchat.fragments.ChatsFragment;
+import hotspotchat.abou7mied.me.hotspotchat.net.NetWorkManager;
 
 /**
  * Created by abou7mied on 12/2/16.
@@ -31,6 +25,8 @@ public class App extends Application {
     public MyProfile myProfile;
     private static App instance;
     private Preferences preferences;
+    private NetWorkManager netWorkManager;
+    private DBController dbController;
 
     public static App getInstance() {
         return instance;
@@ -41,16 +37,37 @@ public class App extends Application {
     public void onCreate() {
         super.onCreate();
         Log.i("App", "onCreate");
-        Stetho.initializeWithDefaults(this);
-
-        preferences = new Preferences(this);
 
         instance = this;
-        Intent intent = new Intent(this, NetService.class);
+
+        Stetho.initializeWithDefaults(this);
+
+        dbController = new DBController(this);
+
         myProfile = new MyProfile(this);
-        prepareMyProfile();
+
+        preferences = new Preferences(this);
+        preferences.prepare();
+
+        Intent intent = new Intent(this, NetService.class);
+
+        ImageLoaderConfiguration config = new ImageLoaderConfiguration.Builder(this)
+                .build();
+        ImageLoader.getInstance().init(config);
+
+
+        netWorkManager = new NetWorkManager();
+        netWorkManager.prepare(this);
 
         bindService(intent, serviceConnection, Service.BIND_AUTO_CREATE);
+        retrieveDBData();
+
+
+    }
+
+    private void retrieveDBData() {
+        Profile.loadProfiles();
+        ChatsFragment.loadMessages();
     }
 
     public NetService getNetService() {
@@ -58,19 +75,8 @@ public class App extends Application {
     }
 
 
-    public void prepareMyProfile() {
-        String name = getPreferences().getName();
-        int avatar = getPreferences().getAvatar();
-
-        if (name != null) {
-            ((Profile) myProfile).setName(name);
-            ((Profile) myProfile).setAvatar(avatar);
-        }
-
-    }
-
     public boolean isProfilePrepared() {
-        return getPreferences().getName() != null;
+        return !(myProfile.getName() == null || myProfile.getName().equals(""));
     }
 
 
@@ -80,6 +86,10 @@ public class App extends Application {
 
     public MyProfile getMyProfile() {
         return myProfile;
+    }
+
+    public NetWorkManager getNetWorkManager() {
+        return netWorkManager;
     }
 
     private ServiceConnection serviceConnection = new ServiceConnection() {
@@ -95,4 +105,8 @@ public class App extends Application {
             netService = null;
         }
     };
+
+    public DBController getDbController() {
+        return dbController;
+    }
 }
